@@ -1,26 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 
 import "./LoginPage.style.css";
+import { emailSignInStart } from "../../redux/user/user.actions";
 
 export class LoginPage extends Component {
   formRef = React.createRef();
 
-  // componentDidMount() {
-  //   //  fetch api or get data
-  //   this.formRef.current.setFieldsValue({
-  //     username: "Hello world!",
-  //     password: "123456",
-  //   });
-  // }
+  componentDidMount() {
+    // //  fetch api or get data
+    // this.formRef.current.setFieldsValue({
+    //   username: "Hello world!",
+    //   password: "123456",
+    // });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.error) {
+      message.destroy();
+      message.error("Đăng nhập thất bại!", 2);
+    }
+  }
 
   onFinish = (values) => {
-    console.log("Success:", values);
+    const { email, password } = values;
+    this.props.emailSignInStart(email, password);
   };
 
   onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
   render() {
     return (
@@ -34,9 +42,9 @@ export class LoginPage extends Component {
         >
           <Form.Item
             labelCol={{ span: 24 }}
-            label="Username"
-            name="username"
-            placeholder="username"
+            label="Email"
+            name="email"
+            placeholder="Email"
             rules={[
               {
                 required: true,
@@ -62,25 +70,28 @@ export class LoginPage extends Component {
             <Input.Password placeholder="Password" />
           </Form.Item>
 
-          <div className="">
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Submit
-              </Button>
-            </Form.Item>
-          </div>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button mt-4"
+            >
+              Submit
+            </Button>
+          </Form.Item>
         </Form>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  error: state.user.error,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  emailSignInStart: (email, password) =>
+    dispatch(emailSignInStart({ email, password })),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
