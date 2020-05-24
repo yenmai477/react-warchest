@@ -48,8 +48,8 @@ export class Header extends Component {
               onClose={this.onClose}
               visible={this.state.visible}
             >
-              <LeftMenu mode={"vertical"} />
-              <RightMenu mode={"vertical"} />
+              <LeftMenu mode={"inline"} />
+              <RightMenu mode={"inline"} />
             </Drawer>
           </div>
         </nav>

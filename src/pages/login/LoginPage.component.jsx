@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button } from "antd";
 
 import "./LoginPage.style.css";
 import { emailSignInStart } from "../../redux/user/user.actions";
+import { selectCurrentUser } from "../../redux/user/user.selector";
+import { Redirect } from "react-router-dom";
 
 export class LoginPage extends Component {
   formRef = React.createRef();
@@ -15,22 +17,18 @@ export class LoginPage extends Component {
     //   password: "123456",
     // });
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.error) {
-      message.destroy();
-      message.error("Đăng nhập thất bại!", 2);
-    }
-  }
 
   onFinish = (values) => {
     const { email, password } = values;
     this.props.emailSignInStart(email, password);
   };
 
-  onFinishFailed = (errorInfo) => {
-    // console.log("Failed:", errorInfo);
-  };
   render() {
+    console.log(this.props.currentUser);
+
+    if (this.props.currentUser) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="offset-md-4 col-md-4">
         <Form
@@ -49,7 +47,7 @@ export class LoginPage extends Component {
               {
                 required: true,
                 type: "email",
-                message: "Please input invalid email!",
+                message: "Email không hợp lệ",
               },
             ]}
           >
@@ -63,7 +61,7 @@ export class LoginPage extends Component {
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: "Mật khẩu không hợp lệ",
               },
             ]}
           >
@@ -76,7 +74,7 @@ export class LoginPage extends Component {
               htmlType="submit"
               className="login-form-button mt-4"
             >
-              Submit
+              Đăng nhập
             </Button>
           </Form.Item>
         </Form>
@@ -86,7 +84,7 @@ export class LoginPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  error: state.user.error,
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

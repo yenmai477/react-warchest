@@ -4,16 +4,14 @@ import { Link, withRouter } from "react-router-dom";
 
 class LeftMenu extends Component {
   render() {
+    const { mode, location } = this.props;
     return (
-      <Menu
-        mode={this.props.mode || "horizontal"}
-        selectedKeys={[this.props.location.pathname]}
-      >
+      <Menu mode={mode || "horizontal"} selectedKeys={[location.pathname]}>
         <Menu.Item key="/">
           <Link to="/">Trang chủ</Link>
         </Menu.Item>
-        <Menu.Item key="/users/products">
-          <Link to="/users/products">Sản phẩm của tôi</Link>
+        <Menu.Item key="/products">
+          <Link to="/products">Sản phẩm</Link>
         </Menu.Item>
         <Menu.Item key="/about">
           <Link to="/about">Giới thiệu</Link>

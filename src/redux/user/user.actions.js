@@ -19,9 +19,13 @@ export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
 
-export const signOutStart = () => ({
-  type: UserActionTypes.SIGN_OUT_START,
-});
+export const signOut = () => {
+  localStorage.removeItem("token");
+
+  return {
+    type: UserActionTypes.SIGN_OUT,
+  };
+};
 
 export const signOutSuccess = () => ({
   type: UserActionTypes.SIGN_OUT_SUCCESS,
