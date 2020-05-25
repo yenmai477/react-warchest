@@ -5,6 +5,10 @@ import Header from "./components/Header/Header.component";
 import HomePage from "./pages/homepage/Hompage.component";
 import LoginPage from "./pages/login/LoginPage.component";
 import RegisterPage from "./pages/register/RegisterPage.component";
+import ForgotPasword from "./pages/forgotPassword/ForgotPassword.component";
+import ResetPasword from "./pages/forgotPassword/ResetPassword.component";
+import Admin from './pages/admin/Admin.component'
+
 
 import "./App.css";
 import "antd/dist/antd.css";
@@ -21,11 +25,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/forgot-password" component={ForgotPasword} />
+          <Route path="/reset-password" component={ResetPasword} />
+          <Route path="/admin" component={ResetPasword} />
         </Switch>
       </div>
     );

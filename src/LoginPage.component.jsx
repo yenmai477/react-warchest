@@ -94,7 +94,7 @@ export class LoginPage extends Component {
                   <div className="card-body p-0">
                     {/* Nested Row within Card Body */}
                     <div className="row">
-                      <div className="col-lg-6 d-none d-lg-block bg-login-image" ></div>
+                      <div className="col-lg-6 d-none d-lg-block bg-login-image" />
 
                       <div className="col-lg-6">
                         <div className="p-5">
@@ -129,10 +129,10 @@ export class LoginPage extends Component {
                           </form>
                           <hr />
                           <div className="text-center">
-                            <Link className="small" to="/forgot-password">Quên mật khẩu?</Link>
+                            <Link className="small" to="forgot-password.html">Quên mật khẩu?</Link>
                           </div>
                           <div className="text-center">
-                            <Link className="small" to="/register">Đăng ký</Link>
+                            <Link className="small" to="register.html">Đăng ký</Link>
                           </div>
                         </div>
                       </div>
