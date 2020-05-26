@@ -5,12 +5,14 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 
-import "./index.css";
+
+import "./assests/css/theme.css"
+import "./assests/css/osahan.css"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -23,7 +25,5 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+

@@ -10,6 +10,7 @@
     "antd": "^4.2.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -28,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "scss": "node-sass -w src/sass/main.scss src/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
