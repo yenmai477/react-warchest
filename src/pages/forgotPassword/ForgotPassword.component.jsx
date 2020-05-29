@@ -14,9 +14,7 @@ export default class ForgotPassword extends Component {
                                         <div className="card-body p-0">
                                             {/* Nested Row within Card Body */}
                                             <div className="row">
-                                                <figure id="signup-img">
-                                                    <img src="" alt />
-                                                </figure>
+                                                <div className="col-lg-6 d-none d-lg-block bg-password-image" ></div>
                                                 <div className="col-lg-6">
                                                     <div className="p-5">
                                                         <div className="text-center">

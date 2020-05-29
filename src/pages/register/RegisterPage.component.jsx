@@ -14,9 +14,7 @@ export class RegisterPage extends Component {
                   <div className="card-body p-0">
                     {/* Nested Row within Card Body */}
                     <div className="row">
-                      <figure id="signup-img-3">
-
-                      </figure>
+                      <div className="col-lg-6 d-none d-lg-block bg-register-image" ></div>
                       <div className="col-lg-6">
                         <div className="p-5">
                           <div className="text-center">

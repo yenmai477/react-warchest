@@ -4,7 +4,7 @@ export default class Admin extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div id="page-top">
                     {/* Page Wrapper */}
                     <div id="wrapper">
                         {/* Content Wrapper */}

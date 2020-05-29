@@ -114,16 +114,16 @@ export class LoginPage extends Component {
                                 <label className="custom-control-label" htmlFor="customCheck">Ghi nhớ tài khoản</label>
                               </div>
                             </div>
-                            <Link to="/" className="btn btn-primary btn-user btn-block">
+                            <Link to="/app" className="btn btn-primary btn-user btn-block">
                               Đăng nhập
                       </Link>
                             <hr />
                             <Link to="/" className="btn btn-google btn-user btn-block">
-                              <i className="fa fa-google fa-fw" /> Đăng nhập với
+                              <i className="fab fa-google " /> Đăng nhập với
                         Google
                       </Link>
                             <Link to="/" className="btn btn-facebook btn-user btn-block">
-                              <i className="fa fa-facebook-f fa-fw" /> Đăng nhập với
+                              <i className="fab fa-facebook" /> Đăng nhập với
                         Facebook
                       </Link>
                           </form>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import HomePage from "./pages/homepage/Hompage.component";
+import LandingPage from './pages/LandingPage/LandingPage'
 import LoginPage from "./pages/login/LoginPage.component";
 import RegisterPage from "./pages/register/RegisterPage.component";
 import ForgotPasword from "./pages/forgotPassword/ForgotPassword.component";
@@ -25,12 +25,12 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exec path="/" component={LandingPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/forgot-password" component={ForgotPasword} />
           <Route path="/reset-password" component={ResetPasword} />
-          <Route path="/admin" component={Admin} />
+          <Route path="/app" component={Admin} />
         </Switch>
       </div>
     );
