@@ -23,11 +23,8 @@ export default function LandingPage() {
                             <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
                                 <form>
                                     <div className="form-row">
-                                        <div className="col-12 col-md-9 mb-2 mb-md-0">
-                                            <input type="email" className="form-control form-control-lg" placeholder="Nhập email của bạn..." />
-                                        </div>
-                                        <div className="col-12 col-md-3">
-                                            <button type="submit" className="btn btn-block btn-lg btn-primary">Đăng ký</button>
+                                        <div className="col-12 ">
+                                            <Link className="btn btn-block btn-lg btn-primary" to="/register">Đăng ký</Link>
                                         </div>
                                     </div>
                                 </form>

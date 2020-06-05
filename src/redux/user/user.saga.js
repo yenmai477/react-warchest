@@ -1,6 +1,7 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import apiCall from "../../utils/apiCall";
 
+import { push } from 'react-router-redux';
 import UserActionTypes from "./user.types";
 
 import { signInSuccess, signInFailure } from "./user.actions";
@@ -18,6 +19,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     const { user } = data.data;
     yield localStorage.setItem("token", data.token);
     yield put(signInSuccess(user));
+    yield put(push('/app'));
   } catch (error) {
     yield put(signInFailure(error));
     yield put(hideLoading());
