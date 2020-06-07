@@ -28,7 +28,7 @@ export class Header extends Component {
     return (
       <React.Fragment>
         <LoadingIndicator />
-        <nav className="menuBar mb-5">
+        <nav className="menuBar">
           <div className="logo">
             <Link to="/app">Warchest</Link>
           </div>
