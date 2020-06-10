@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import "./LoginPage.style.css"
+import "./LoginPage.style.css";
 import { emailSignInStart } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
-
-
-
 import { Redirect } from "react-router-dom";
 
-export class LoginPage extends Component {
+class LoginPage extends Component {
   formRef = React.createRef();
 
   componentDidMount() {
@@ -40,12 +37,14 @@ export class LoginPage extends Component {
           <div className="row no-gutters">
             <div className="col-md-12 p-5 bg-white full-height vertical-center">
               <div className="container">
-                <Link className="login-back" to="/"><i className="fa fa-arrow-left" /></Link>
+                <Link className="login-back" to="/">
+                  <i className="fa fa-arrow-left" />
+                </Link>
                 <div className="card o-hidden border-0 shadow-lg my-5">
                   <div className="card-body p-0">
                     {/* Nested Row within Card Body */}
                     <div className="row">
-                      <div className="col-lg-6 d-none d-lg-block bg-login-image" ></div>
+                      <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
 
                       <div className="col-lg-6">
                         <div className="p-5">
@@ -97,7 +96,7 @@ export class LoginPage extends Component {
                                 className="login-form-button mt-4"
                               >
                                 Đăng nhập
-            </Button>
+                              </Button>
                             </Form.Item>
                           </Form>
                           {/* <form className="user">
@@ -134,10 +133,14 @@ export class LoginPage extends Component {
                           </form> */}
                           <hr />
                           <div className="text-center">
-                            <Link className="small" to="/forgot-password">Quên mật khẩu?</Link>
+                            <Link className="small" to="/forgot-password">
+                              Quên mật khẩu?
+                            </Link>
                           </div>
                           <div className="text-center">
-                            <Link className="small" to="/register">Đăng ký</Link>
+                            <Link className="small" to="/register">
+                              Đăng ký
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -149,7 +152,6 @@ export class LoginPage extends Component {
           </div>
         </div>
       </section>
-
     );
   }
 }

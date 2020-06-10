@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import { emailSignInStart } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
-
-
-
 import { Redirect } from "react-router-dom";
-export class RegisterPage extends Component {
+class RegisterPage extends Component {
   componentDidMount() {
     //  fetch api or get data
     // this.formRef.current.setFieldsValue({
@@ -33,12 +30,14 @@ export class RegisterPage extends Component {
           <div className="row no-gutters">
             <div className="col-md-12 p-5 bg-white full-height vertical-center">
               <div className="container">
-                <Link className="login-back" to="/"><i className="fa fa-arrow-left" /></Link>
+                <Link className="login-back" to="/">
+                  <i className="fa fa-arrow-left" />
+                </Link>
                 <div className="card o-hidden border-0 shadow-lg my-5">
                   <div className="card-body p-0">
                     {/* Nested Row within Card Body */}
                     <div className="row">
-                      <div className="col-lg-6 d-none d-lg-block bg-register-image" ></div>
+                      <div className="col-lg-6 d-none d-lg-block bg-register-image"></div>
                       <div className="col-lg-6">
                         <div className="p-5">
                           <div className="text-center">
@@ -102,7 +101,7 @@ export class RegisterPage extends Component {
                                 className="login-form-button mt-4"
                               >
                                 Đăng ký
-            </Button>
+                              </Button>
                             </Form.Item>
                           </Form>
                           {/* <form className="user">
@@ -134,10 +133,14 @@ export class RegisterPage extends Component {
                           </form> */}
                           <hr />
                           <div className="text-center">
-                            <h6 className="small" to>Đã có tài khoản?</h6>
+                            <h6 className="small" to>
+                              Đã có tài khoản?
+                            </h6>
                           </div>
                           <div className="text-center">
-                            <Link className="small" to="/login">Đăng nhập</Link>
+                            <Link className="small" to="/login">
+                              Đăng nhập
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -148,9 +151,8 @@ export class RegisterPage extends Component {
             </div>
           </div>
         </div>
-      </section>)
-
-
+      </section>
+    );
   }
 }
 

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { LoadingBar } from "react-redux-loading-bar";
 
-export class LoadingIndicator extends Component {
+class LoadingIndicator extends Component {
   render() {
     const { showBarStatus, style } = this.props;
 

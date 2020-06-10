@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import apiCall from "../../utils/apiCall";
 import ProductCard from "../product-card/ProductCard.component";
 import { Link } from "react-router-dom";
-export class BestPriceProduct extends Component {
+class BestPriceProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +33,6 @@ export class BestPriceProduct extends Component {
           </div>
           <div className="row">
             {this.state.products.map((item) => {
-              console.log(item);
               return (
                 <div className="col-md-3 col-sm-12" key={item.id}>
                   <ProductCard

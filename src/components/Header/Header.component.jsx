@@ -9,7 +9,7 @@ import LoadingIndicator from "../loading-indicator/LoadingIndicator.component";
 import LeftMenu from "./LeftMenu.component";
 import RightMenu from "./RightMenu.component";
 
-export class Header extends Component {
+class Header extends Component {
   state = {
     visible: false,
   };
@@ -26,7 +26,8 @@ export class Header extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <div>
+        {/* class="fixed-top" style={{ background: "#fff" }} */}
         <LoadingIndicator />
         <nav className="menuBar">
           <div className="logo">
@@ -53,7 +54,7 @@ export class Header extends Component {
             </Drawer>
           </div>
         </nav>
-      </React.Fragment>
+      </div>
     );
   }
 }

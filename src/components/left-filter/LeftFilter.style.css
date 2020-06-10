@@ -1,0 +1,12 @@
+label.ant-checkbox-wrapper {
+  margin-bottom: 0.5em;
+}
+
+.ant-checkbox-group {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.ant-collapse-header {
+  background-color: white !important;
+}
