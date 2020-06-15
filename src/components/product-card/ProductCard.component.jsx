@@ -22,7 +22,7 @@ const getBrandImage = (site) => {
   return images[site];
 };
 
-export default class ProductCard extends Component {
+class ProductCard extends Component {
   renderPriceLabel = (label) => {
     if (label === "Sale ảo") {
       return (
@@ -52,7 +52,7 @@ export default class ProductCard extends Component {
       <div className="custom-card shadow-sm bg-white h-100">
         <div className="custom-card-image">
           {priceLabel && this.renderPriceLabel(priceLabel)}
-          <Link to={`/products/${id}`}>
+          <Link to={`/app/products/${id}`}>
             <img className="img-fluid item-img" src={image} alt="product" />
           </Link>
           <div className="button-g-btn button-g-btn-up">
@@ -63,7 +63,7 @@ export default class ProductCard extends Component {
         <div className="p-3 pt-4">
           <div className="custom-card-body">
             <h6 className="mb-3  card-title">
-              <Link className="text-gray-900" to={`/products/${id}`}>
+              <Link className="text-gray-900" to={`/app/products/${id}`}>
                 {productName}
               </Link>
             </h6>
@@ -93,3 +93,5 @@ export default class ProductCard extends Component {
     );
   }
 }
+
+export default ProductCard;
