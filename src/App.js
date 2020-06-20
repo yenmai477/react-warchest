@@ -7,8 +7,8 @@ import RegisterPage from "./pages/register/RegisterPage.component";
 import ForgotPasword from "./pages/forgotPassword/ForgotPassword.component";
 import ResetPasword from "./pages/forgotPassword/ResetPassword.component";
 import HomePage from "./pages/admin/HomePage/HomePage.component";
-import Profile from "./pages/admin/Profile/Profile.component";
-import EditProfile from "./pages/admin/Profile/EditProfile";
+
+
 
 import "antd/dist/antd.css";
 import "react-icofont";
@@ -27,8 +27,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/edit-profile" component={EditProfile} />
+
+
           <Route path="/app" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
