@@ -27,8 +27,6 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
-
-
           <Route path="/app" component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />

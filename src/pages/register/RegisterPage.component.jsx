@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 
-import { emailSignInStart } from "../../redux/user/user.actions";
+import { signUpStart } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import { Redirect } from "react-router-dom";
@@ -15,9 +15,9 @@ class RegisterPage extends Component {
     //   password: "123456",
     // });
   }
-  onFinish = (values) => {
-    const { email, password } = values;
-    this.props.emailSignInStart(email, password);
+  onFinish = ({ name, email, password, passwordConfirm }) => {
+
+    this.props.signUpStart(name, email, password, passwordConfirm)
   };
   render() {
     console.log(this.props.currentUser);
@@ -49,7 +49,22 @@ class RegisterPage extends Component {
                             name="basic"
                             onFinish={this.onFinish}
                             onFinishFailed={this.onFinishFailed}
+                          ><Form.Item
+                            labelCol={{ span: 24 }}
+                            label="Nhập tên"
+                            name="name"
+                            placeholder="Nhập tên"
+                            className="login-form"
+                            rules={[
+                              {
+                                required: true,
+
+                                message: "Tên không hợp lệ",
+                              },
+                            ]}
                           >
+                              <Input placeholder="Nhập tên của bạn" />
+                            </Form.Item>
                             <Form.Item
                               labelCol={{ span: 24 }}
                               label="Nhập email"
@@ -64,7 +79,7 @@ class RegisterPage extends Component {
                                 },
                               ]}
                             >
-                              <Input placeholder="Username" />
+                              <Input placeholder="Email" />
                             </Form.Item>
 
                             <Form.Item
@@ -82,7 +97,7 @@ class RegisterPage extends Component {
                             </Form.Item>
                             <Form.Item
                               label="Nhập lại mật khẩu"
-                              name="password"
+                              name="passwordConfirm"
                               placeholder="Nhập lại mật khẩu"
                               rules={[
                                 {
@@ -98,7 +113,8 @@ class RegisterPage extends Component {
                               <Button
                                 type="primary"
                                 htmlType="submit"
-                                className="login-form-button mt-4"
+                                className="login-form-button "
+                                block
                               >
                                 Đăng ký
                               </Button>
@@ -156,8 +172,14 @@ class RegisterPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state)
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (name, email, password, passwordConfirm) =>
+    dispatch(signUpStart({ name, email, password, passwordConfirm })),
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

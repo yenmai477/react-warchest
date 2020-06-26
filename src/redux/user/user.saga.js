@@ -4,7 +4,8 @@ import apiCall from "../../utils/apiCall";
 import { push } from 'react-router-redux';
 import UserActionTypes from "./user.types";
 
-import { signInSuccess, signInFailure } from "./user.actions";
+import { signInSuccess, signInFailure, signUpSuccess, signUpFailure, forgotPasswordSuccess, forgotPasswordFailure, resetPasswordFailure, resetPasswordSuccess } from "./user.actions";
+
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import showMessage from "../../utils/showMessage";
 
@@ -30,7 +31,90 @@ export function* signInWithEmail({ payload: { email, password } }) {
     yield put(hideLoading());
   }
 }
+export function* signUp({ payload: { name, email, password, passwordConfirm } }) {
+  try {
 
+    yield put(showLoading());
+    const { data } = yield call(() =>
+      apiCall.post("/users/signup", { name, email, password, passwordConfirm })
+    );
+    const { user } = data.data;
+    yield localStorage.setItem("token", data.token);
+    yield put(signUpSuccess(user));
+    yield put(push('/app'));
+  } catch (error) {
+    yield put(signUpFailure(error));
+    yield put(hideLoading());
+    if (error.response) {
+      yield showMessage("error", error.response.data.message, 2, {
+        top: 70,
+      });
+    } else {
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
+        top: 70,
+      });
+    }
+  }
+  finally {
+    yield put(hideLoading());
+  }
+}
+export function* forgotPassword({ payload: { email } }) {
+
+  try {
+
+    yield put(showLoading());
+    const { data } = yield call(() =>
+      apiCall.post("/users/forgotPassword", { email })
+    );
+    yield showMessage("success", " Đã gửi mail, Vui lòng kiểm tra email của bạn", 2, {
+      top: 70,
+    });
+  } catch (error) {
+    yield put(forgotPasswordFailure(error));
+    yield put(hideLoading());
+    if (error.response) {
+      yield showMessage("error", error.response.data.message, 2, {
+        top: 70,
+      });
+    } else {
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
+        top: 70,
+      });
+    }
+  }
+  finally {
+    yield put(hideLoading());
+  }
+}
+export function* resetPassword({ payload: { password } }) {
+  try {
+
+    yield put(showLoading());
+    const { data } = yield call(() =>
+      apiCall.post("/users/resetPassword/", { password })
+    );
+    const { user } = data.data;
+    yield localStorage.setItem("token", data.token);
+    yield put(resetPasswordSuccess(user));
+    yield put(push('/app'));
+  } catch (error) {
+    yield put(resetPasswordFailure(error));
+    yield put(hideLoading());
+    if (error.response) {
+      yield showMessage("error", error.response.data.message, 2, {
+        top: 70,
+      });
+    } else {
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
+        top: 70,
+      });
+    }
+  }
+  finally {
+    yield put(hideLoading());
+  }
+}
 export function* isUserAuthenticated() {
   try {
     const { data } = yield call(() => apiCall.get("/users/me"));
@@ -50,7 +134,15 @@ export function* onEmailSignInStart() {
 export function* onCheckUserSession() {
   yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
 }
-
+export function* onSignUp() {
+  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
+}
+export function* onForgotPassword() {
+  yield takeLatest(UserActionTypes.FORGOT_PASSWORD_START, forgotPassword);
+}
+export function* onResetPassword() {
+  yield takeLatest(UserActionTypes.RESET_PASSWORD_START, resetPassword);
+}
 export function* userSagas() {
-  yield all([call(onEmailSignInStart), call(onCheckUserSession)]);
+  yield all([call(onEmailSignInStart), call(onCheckUserSession), call(onSignUp), call(onForgotPassword), call(onResetPassword)]);
 }

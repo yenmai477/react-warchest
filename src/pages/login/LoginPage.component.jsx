@@ -94,6 +94,7 @@ class LoginPage extends Component {
                                 type="primary"
                                 htmlType="submit"
                                 className="login-form-button mt-4"
+                                block
                               >
                                 Đăng nhập
                               </Button>
