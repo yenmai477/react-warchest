@@ -17,6 +17,8 @@ import LazadaImage from "../../assests/images/brands/lazada.png";
 import ShopeeImage from "../../assests/images/brands/shopee.jpg";
 import SendoImage from "../../assests/images/brands/sendo.png";
 
+import NoficationFormComponent from "../nofication-form/NoficationForm.component";
+
 const getBrandImage = (site) => {
   const images = [];
   images["tiki.vn"] = TikiImage;
@@ -237,104 +239,7 @@ class ProductDetail extends Component {
             </div>
             {/* End price tracker */}
             {/* Begin subscribe product */}
-            <div className="row">
-              <div
-                id="to"
-                className="col-12 bg-white shadow-sm rounded p-4 mb-4"
-              >
-                <h5 className="mb-3 text-gray-900">Theo dõi giá sản phẩm</h5>
-                <form className="align-items-start bg-white mt-3 mb-3 ml-1 mr-1 p-3">
-                  <div className="row">
-                    <div className="offset-md-1 col-md-3 mb-3">
-                      <h6>Theo dõi sản phẩm này:</h6>
-                    </div>
-                    <div className="col-md-3 mb-3">
-                      <h6>Thông báo khi</h6>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="notiWhen"
-                          id="down_below"
-                          defaultValue="down_below"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="down_below"
-                        >
-                          Giá nhỏ hơn
-                          <input
-                            type="number"
-                            className="mb-2 form-control form-control-sm"
-                            placeholder="Nhập giá mong đợi"
-                            defaultValue={230000}
-                          />
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="notiWhen"
-                          id="down"
-                          defaultValue="down"
-                          defaultChecked
-                        />
-                        <label className="form-check-label" htmlFor="down">
-                          Giá giảm
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="notiWhen"
-                          id="available"
-                          defaultValue="available"
-                        />
-                        <label className="form-check-label" htmlFor="available">
-                          Khi có hàng
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-md-3 mb-3">
-                      <h6>Thông báo qua</h6>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name="notiMethod"
-                          id="email"
-                          defaultValue="email"
-                          defaultChecked
-                        />
-                        <label className="form-check-label" htmlFor="email">
-                          Email yenluutru02@gmail.com
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name="notiMethod"
-                          id="messaging"
-                          defaultValue="messaging"
-                          defaultChecked
-                        />
-                        <label className="form-check-label" htmlFor="messaging">
-                          Push notification
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="offset-md-10">
-                      <button className="btn btn-primary">Xác nhận</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <NoficationFormComponent product={product} />
           </div>
         </section>
       </div>

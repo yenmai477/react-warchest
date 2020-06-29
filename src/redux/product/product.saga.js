@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call, delay } from "redux-saga/effects";
+import { takeLatest, put, all, call } from "redux-saga/effects";
 import apiCall from "../../utils/apiCall";
 
 import { push } from "react-router-redux";
@@ -43,9 +43,35 @@ export function* getProductDetails({ payload: params }) {
   }
 }
 
+export function* searchProductUrl({ payload: { url, history } }) {
+  try {
+    yield put(showLoading());
+
+    const { data } = yield call(() => apiCall.post(`/products`, { url }));
+    const product = data.data.data;
+    console.log("function*searchProductUrl -> product", product);
+    history.push(`/app/products/${product._id}`);
+  } catch (error) {
+    console.log(error);
+
+    yield put(searchProductsFailure(error));
+    yield put(hideLoading());
+  } finally {
+    yield put(hideLoading());
+  }
+}
+
 export function* onSearchProductsStart() {
   yield takeLatest(productActionTypes.SEARCH_PRODUCTS_START, searchProducts);
 }
+
+export function* onSearchProductsUrlStart() {
+  yield takeLatest(
+    productActionTypes.SEARCH_URL_PRODUCT_START,
+    searchProductUrl
+  );
+}
+
 export function* onGetProductsDetailStart() {
   yield takeLatest(
     productActionTypes.GET_PRODUCT_DETAIL_START,
@@ -54,5 +80,9 @@ export function* onGetProductsDetailStart() {
 }
 
 export function* productSagas() {
-  yield all([call(onSearchProductsStart), call(onGetProductsDetailStart)]);
+  yield all([
+    call(onSearchProductsStart),
+    call(onGetProductsDetailStart),
+    call(onSearchProductsUrlStart),
+  ]);
 }

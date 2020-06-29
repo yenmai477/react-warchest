@@ -18,6 +18,12 @@ export const getProductDetailStart = (params) => ({
   type: ProductActionTypes.GET_PRODUCT_DETAIL_START,
   payload: params,
 });
+
+export const searchURLProductStart = ({ url, history }) => ({
+  type: ProductActionTypes.SEARCH_URL_PRODUCT_START,
+  payload: { url, history },
+});
+
 export const getProductDetailSuccess = (product) => ({
   type: ProductActionTypes.GET_PRODUCT_DETAIL_SUCCESS,
   payload: product,
