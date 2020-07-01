@@ -12,6 +12,8 @@ import {
 import ProductCard from "../../product-card/ProductCard.component";
 import { withRouter } from "react-router-dom";
 import { searchProductsStart } from "../../../redux/product/product.actions";
+import CardSkeleton from "../../card-skeleton/CardSkeleton.component";
+import RightSearchResult from "../../right-search-result/RightSearchResult.component";
 
 const { Option } = Select;
 
@@ -93,7 +95,7 @@ class SearchResult extends Component {
             </div>
             <div className="row">
               <LeftFilter />
-              <div className="col-lg-9">
+              {/* <div className="col-lg-9">
                 <div className="row">
                   {this.props.products &&
                     this.props.products.map((item) => {
@@ -113,7 +115,9 @@ class SearchResult extends Component {
                       );
                     })}
                 </div>
-              </div>
+              </div> */}
+
+              <RightSearchResult isLoading={this.props.loading} />
             </div>
           </div>
         </section>
@@ -136,6 +140,7 @@ class SearchResult extends Component {
 const mapStateToProps = (state) => ({
   products: selectSearchProducts(state),
   total: selectTotalProducts(state),
+  loading: state.loadingBar.default,
 });
 
 const mapDispatchToProps = (dispatch) => ({

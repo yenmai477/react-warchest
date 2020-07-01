@@ -3,19 +3,23 @@ import { connect } from "react-redux";
 import apiCall from "../../utils/apiCall";
 import ProductCard from "../product-card/ProductCard.component";
 import { Link } from "react-router-dom";
+import CardSkeleton from "../card-skeleton/CardSkeleton.component";
+
 class BestPriceProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
       products: [],
+      isLoading: false,
     };
   }
   async componentDidMount() {
+    this.setState({ ...this.state, isLoading: true });
     const { data: res } = await apiCall.get(
       "/products?limit=4&priceLabel[in]=[Sale tốt,Sale xịn]"
     );
     const products = res.data.data;
-    this.setState({ ...this.state, products });
+    this.setState({ ...this.state, products, isLoading: false });
   }
 
   render() {
@@ -32,22 +36,32 @@ class BestPriceProduct extends Component {
             </Link>
           </div>
           <div className="row">
-            {this.state.products.map((item) => {
-              return (
-                <div className="col-md-3 col-sm-12" key={item.id}>
-                  <ProductCard
-                    site={item.site}
-                    productName={item.name}
-                    image={item.image}
-                    price={item.price}
-                    url={item.url}
-                    updatedAt={item.updatedAt}
-                    priceLabel={item.priceLabel}
-                    id={item.id}
-                  />
-                </div>
-              );
-            })}
+            {this.state.isLoading && (
+              <React.Fragment>
+                {[...Array(4).keys()].map((item) => (
+                  <div className="col-md-3 col-sm-12" key={item.id}>
+                    <CardSkeleton />
+                  </div>
+                ))}
+              </React.Fragment>
+            )}
+            {!this.state.isLoading &&
+              this.state.products.map((item) => {
+                return (
+                  <div className="col-md-3 col-sm-12" key={item.id}>
+                    <ProductCard
+                      site={item.site}
+                      productName={item.name}
+                      image={item.image}
+                      price={item.price}
+                      url={item.url}
+                      updatedAt={item.updatedAt}
+                      priceLabel={item.priceLabel}
+                      id={item.id}
+                    />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>

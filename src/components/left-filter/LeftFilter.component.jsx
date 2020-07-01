@@ -48,6 +48,19 @@ class LeftFilter extends Component {
     this.setState({ ...this.state, [name]: checkedValues });
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location.search !== prevProps.location.search) {
+      const { search: newSearch } = this.props.location;
+      const { search: oldSearch } = prevProps.location;
+      const { q } = queryString.parse(newSearch);
+      const { q: oldQ } = queryString.parse(oldSearch);
+      if (q !== oldQ) {
+        this.handleResetFilter();
+      }
+      window.scrollTo(0, 0);
+    }
+  }
+
   handleResetFilter = () => {
     this.setState({
       selectSites: [],

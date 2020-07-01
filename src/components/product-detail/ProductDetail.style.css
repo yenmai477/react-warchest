@@ -1,0 +1,32 @@
+.coupon-deal-detail-main-block .user-cou-img {
+  background: #fff none repeat scroll 0 0;
+  border: 5px solid #fff;
+  border-radius: 100px;
+  height: 64px !important;
+  width: 64px !important;
+}
+
+.got-badge {
+  bottom: 250px !important;
+  position: absolute;
+  right: 33px;
+}
+
+.custom-height {
+  min-height: 72px !important;
+}
+
+@media (max-width: 767px) and (min-width: 0px) {
+  .got-badge {
+    bottom: 10px !important;
+    position: absolute;
+    right: 33px;
+  }
+  .coupon-deal-detail-main-footer p {
+    padding: 0 1.5rem !important;
+  }
+
+  .coupon-deal-detail-main {
+    flex-direction: column !important;
+  }
+}
