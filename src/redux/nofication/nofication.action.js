@@ -10,7 +10,7 @@ export const addNoficationFailure = (error) => ({
   payload: error,
 });
 
-export const seProductsStart = (nofication) => ({
+export const addNoficationStart = (nofication) => ({
   type: NoficationActionTypes.ADD_NOFICATION_START,
   payload: nofication,
 });

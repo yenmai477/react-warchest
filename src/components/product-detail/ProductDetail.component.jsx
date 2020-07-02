@@ -29,10 +29,12 @@ const getBrandImage = (site) => {
 };
 
 const formatPrice = (price) =>
-  price.toLocaleString("it-IT", {
-    style: "currency",
-    currency: "VND",
-  });
+  price
+    ? price.toLocaleString("it-IT", {
+        style: "currency",
+        currency: "VND",
+      })
+    : 0;
 class ProductDetail extends Component {
   componentDidMount() {
     console.log("props", this.props);
@@ -81,21 +83,23 @@ class ProductDetail extends Component {
     // }
 
     let dataPrice = [];
+    // if (priceTracks.length > 0) {
+    //   dataPrice.push(priceTracks[0]);
+    // }
 
     for (let index = 1; index < priceTracks.length; index++) {
       const { price } = priceTracks[index];
       const { price: oldPrice } = priceTracks[index - 1];
-      console.log(price, oldPrice);
 
       if (price !== oldPrice) {
         countChangePrice++;
         dataPrice.push(priceTracks[index]);
       }
     }
+
     if (dataPrice.length < 2) {
       dataPrice = priceTracks;
     }
-
     const prices = dataPrice.map((item) => item.price);
 
     const labels = dataPrice.map((item) =>

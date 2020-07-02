@@ -39,7 +39,10 @@ class BestPriceProduct extends Component {
             {this.state.isLoading && (
               <React.Fragment>
                 {[...Array(4).keys()].map((item) => (
-                  <div className="col-md-3 col-sm-12" key={item.id}>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 mb-4"
+                    key={item.id}
+                  >
                     <CardSkeleton />
                   </div>
                 ))}
@@ -48,7 +51,10 @@ class BestPriceProduct extends Component {
             {!this.state.isLoading &&
               this.state.products.map((item) => {
                 return (
-                  <div className="col-md-3 col-sm-12" key={item.id}>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 mb-4"
+                    key={item.id}
+                  >
                     <ProductCard
                       site={item.site}
                       productName={item.name}

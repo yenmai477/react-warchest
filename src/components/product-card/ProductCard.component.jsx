@@ -75,10 +75,11 @@ class ProductCard extends Component {
           <div className="custom-card-footer d-flex align-items-center">
             <span className="text-success">
               <i className="icofont-price"></i>{" "}
-              {price.toLocaleString("it-IT", {
-                style: "currency",
-                currency: "VND",
-              })}
+              {price &&
+                price.toLocaleString("it-IT", {
+                  style: "currency",
+                  currency: "VND",
+                })}
             </span>
             <a
               className="btn btn-sm btn-white ml-auto"

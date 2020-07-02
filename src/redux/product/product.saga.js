@@ -49,7 +49,7 @@ export function* searchProductUrl({ payload: { url, history } }) {
 
     const { data } = yield call(() => apiCall.post(`/products`, { url }));
     const product = data.data.data;
-    console.log("function*searchProductUrl -> product", product);
+
     history.push(`/app/products/${product._id}`);
   } catch (error) {
     console.log(error);
