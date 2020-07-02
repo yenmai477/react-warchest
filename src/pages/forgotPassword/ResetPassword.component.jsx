@@ -1,17 +1,25 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component, useState } from 'react'
+import { Link, withRouter } from 'react-router-dom'
 import { Form, Input, Button } from "antd";
 import { connect } from 'react-redux';
 import { resetPasswordStart } from '../../redux/user/user.actions';
 
 class ResetPassword extends Component {
-    onFinish = (values) => {
-        const { password } = values;
-        console.log(values)
-        this.props.resetPasswordStart(password)
+    componentDidMount() {
+        console.log(this.props.match.params)
     }
+    onFinish = ({ password, passwordConfirm }) => {
+        const token = this.props.match.params.token;
+        console.log(token);
+        if (password !== passwordConfirm) {
+            alert('password does not matched')
+        } else {
+            const { history } = this.props;
+            this.props.resetPasswordStart({ password, passwordConfirm, token, history })
+        }
+    }
+
     render() {
-        console.log(this.props)
         return (
             <section className>
                 <div className="container-fluid pl-0 pr-0">
@@ -57,7 +65,7 @@ class ResetPassword extends Component {
 
                                                         <Form.Item
                                                             label="Nhập lại mật khẩu"
-                                                            name="passwordCofirm"
+                                                            name="passwordConfirm"
                                                             placeholder="Nhập lại mật khẩu"
                                                             rules={[
                                                                 {
@@ -110,8 +118,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    resetPasswordStart: (password) =>
-        dispatch(resetPasswordStart({ password })),
+    resetPasswordStart: (parrams) =>
+        dispatch(resetPasswordStart(parrams)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResetPassword));

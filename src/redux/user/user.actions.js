@@ -63,9 +63,9 @@ export const forgotPasswordFailure = (error) => ({
   type: UserActionTypes.FORGOT_PASSWORD_FAILURE,
   payload: error,
 });
-export const resetPasswordStart = (password) => ({
+export const resetPasswordStart = (params) => ({
   type: UserActionTypes.RESET_PASSWORD_START,
-  payload: password
+  payload: params
 });
 export const resetPasswordSuccess = (password) => ({
   type: UserActionTypes.RESET_PASSWORD_SUCCESS,

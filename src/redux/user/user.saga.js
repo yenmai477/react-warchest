@@ -87,17 +87,20 @@ export function* forgotPassword({ payload: { email } }) {
     yield put(hideLoading());
   }
 }
-export function* resetPassword({ payload: { password } }) {
+export function* resetPassword({ payload: { password, passwordConfirm, token, history } }) {
   try {
+
 
     yield put(showLoading());
     const { data } = yield call(() =>
-      apiCall.post("/users/resetPassword/", { password })
+      apiCall.patch(`/users/resetPassword/${token}`, { password, passwordConfirm, token })
     );
     const { user } = data.data;
     yield localStorage.setItem("token", data.token);
     yield put(resetPasswordSuccess(user));
-    yield put(push('/app'));
+
+    // yield put(push('/app'));
+    history.push('/app')
   } catch (error) {
     yield put(resetPasswordFailure(error));
     yield put(hideLoading());
