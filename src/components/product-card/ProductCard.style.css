@@ -1,7 +1,9 @@
+/* todo: 07/03/20 move this  */
 .content-wrapper {
   background-color: #f0f2f5;
   width: 100%;
   overflow-x: hidden;
+  margin-top: 60px;
 }
 
 .btn-white {

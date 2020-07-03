@@ -5,11 +5,19 @@ const INITIAL_STATE = {
   noficationDetail: null,
 };
 
-const productReducer = (state = INITIAL_STATE, action) => {
+const noficationReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case NoficationActionTypes.GET_NOFICATION_DETAIL_SUCCESS:
+    case NoficationActionTypes.ADD_NOFICATION_SUCCESS:
+    case NoficationActionTypes.UPDATE_NOFICATION_DETAIL_SUCCESS:
+      return {
+        ...state,
+        noficationDetail: action.payload,
+        error: null,
+      };
     default:
       return state;
   }
 };
 
-export default productReducer;
+export default noficationReducer;

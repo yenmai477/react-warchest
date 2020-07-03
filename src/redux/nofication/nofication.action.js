@@ -6,11 +6,41 @@ export const addNoficationSucess = (nofication) => ({
 });
 
 export const addNoficationFailure = (error) => ({
-  type: NoficationActionTypes.SEARCH_PRODUCTS_FAIL,
+  type: NoficationActionTypes.ADD_NOFICATION_FAIL,
   payload: error,
 });
 
 export const addNoficationStart = (nofication) => ({
   type: NoficationActionTypes.ADD_NOFICATION_START,
   payload: nofication,
+});
+
+export const getNoficationDetailStart = (productId) => ({
+  type: NoficationActionTypes.GET_NOFICATION_DETAIL_START,
+  payload: productId,
+});
+
+export const getNoficationDetailSucess = (nofication) => ({
+  type: NoficationActionTypes.GET_NOFICATION_DETAIL_SUCCESS,
+  payload: nofication,
+});
+
+export const getNoficationDetailFailure = (error) => ({
+  type: NoficationActionTypes.GET_NOFICATION_DETAIL_FAIL,
+  payload: error,
+});
+
+export const updateNoficationDetailStart = (params) => ({
+  type: NoficationActionTypes.UPDATE_NOFICATION_DETAIL_START,
+  payload: params,
+});
+
+export const updateNoficationDetailSucess = (nofication) => ({
+  type: NoficationActionTypes.GET_NOFICATION_DETAIL_SUCCESS,
+  payload: nofication,
+});
+
+export const updateNoficationDetailFailure = (error) => ({
+  type: NoficationActionTypes.GET_NOFICATION_DETAIL_FAIL,
+  payload: error,
 });

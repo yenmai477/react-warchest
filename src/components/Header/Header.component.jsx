@@ -26,7 +26,7 @@ class Header extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="header-container">
         {/* class="fixed-top" style={{ background: "#fff" }} */}
         <LoadingIndicator />
         <nav className="menuBar">

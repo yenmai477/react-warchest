@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Switch } from "antd";
+import { Button } from "antd";
 import { selectCurrentUser } from "../../redux/user/user.selector";
-import { addNoficationStart } from "../../redux/nofication/nofication.action";
+import {
+  addNoficationStart,
+  getNoficationDetailStart,
+  updateNoficationDetailStart,
+} from "../../redux/nofication/nofication.action";
+import { selectNoficationDetail } from "../../redux/nofication/nofication.selector";
 
 class NoficationForm extends Component {
   constructor(props) {
@@ -18,24 +23,46 @@ class NoficationForm extends Component {
     this.setState({ ...this.state, expectedPrice: this.props.product.price });
   }
 
-  onChangeStatus = () => {
-    const { active } = this.state;
-    if (!active) {
-      // TODO: 07/02/20 change nofication status
+  componentDidUpdate(prevProps, prevState) {
+    let { nofication } = this.props;
+
+    if (!prevProps.nofication) {
+      if (nofication) {
+        const { active, expectedPrice, email } = nofication;
+        this.setState({ ...this.state, active, expectedPrice, email: !!email });
+        return;
+      }
     }
+  }
+
+  onChangeStatus = () => {
+    let { nofication, updateNoficationStart } = this.props;
+    const { active } = this.state;
+    if (nofication) {
+      updateNoficationStart({ id: nofication._id, active: !active });
+    }
+
     this.setState({
       ...this.state,
       active: !active,
     });
   };
   handleOnSubmit = (evt) => {
+    let { nofication } = this.props;
     evt.preventDefault();
     const { product } = this.props;
-    this.props.addNoficationStart({ product: product.id, ...this.state });
+
+    if (!nofication) {
+      this.props.addNoficationStart({ product: product.id, ...this.state });
+      return;
+    }
+    this.props.updateNoficationStart({
+      id: nofication._id,
+      ...this.state,
+    });
   };
   render() {
     const { currentUser } = this.props;
-    // // TODO: 06/22/20 sửa lại chỗ nào
     return (
       <div className="row">
         <div id="to" className="col-12 bg-white shadow-sm rounded p-4 mb-4">
@@ -59,9 +86,10 @@ class NoficationForm extends Component {
                     name="active"
                     value={this.state.active}
                     onChange={this.onChangeStatus}
+                    checked={this.state.active}
                   />
                   <label className="form-check-label" htmlFor="pushNofication">
-                    Push notification
+                    Kích hoạt
                   </label>
                 </div>
               </div>
@@ -148,10 +176,15 @@ class NoficationForm extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
+  nofication: state.nofication.noficationDetail,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addNoficationStart: (params) => dispatch(addNoficationStart(params)),
+  getNoficationDetailStart: (productId) =>
+    dispatch(getNoficationDetailStart(productId)),
+  updateNoficationStart: (params) =>
+    dispatch(updateNoficationDetailStart(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoficationForm);

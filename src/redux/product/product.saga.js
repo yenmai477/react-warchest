@@ -12,6 +12,7 @@ import {
 } from "./product.actions";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import showMessage from "../../utils/showMessage";
+import { getNoficationDetailStart } from "../nofication/nofication.action";
 
 export function* searchProducts({ payload: params }) {
   try {
@@ -33,8 +34,9 @@ export function* getProductDetails({ payload: params }) {
     yield put(showLoading());
 
     const { data } = yield call(() => apiCall.get(`/products/${params}`));
-    const products = data.data;
-    yield put(getProductDetailSuccess(products));
+    const product = data.data;
+    yield put(getNoficationDetailStart(product._id));
+    yield put(getProductDetailSuccess(product));
   } catch (error) {
     yield put(getProductDetailFail(error));
     yield put(hideLoading());
