@@ -68,6 +68,22 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload,
       }
+    case UserActionTypes.UPDATE_PASSWORD_START:
+      return {
+        ...state,
+        error: null
+      }
+    case UserActionTypes.UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+        error: null
+      }
+    case UserActionTypes.UPDATE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      }
 
     default:
       return state;

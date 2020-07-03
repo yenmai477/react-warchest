@@ -4,7 +4,7 @@ import apiCall from "../../utils/apiCall";
 import { push } from 'react-router-redux';
 import UserActionTypes from "./user.types";
 
-import { signInSuccess, signInFailure, signUpSuccess, signUpFailure, forgotPasswordSuccess, forgotPasswordFailure, resetPasswordFailure, resetPasswordSuccess } from "./user.actions";
+import { signInSuccess, signInFailure, signUpSuccess, signUpFailure, forgotPasswordSuccess, forgotPasswordFailure, resetPasswordFailure, resetPasswordSuccess, updatePasswordSuccess, updatePasswordFailure } from "./user.actions";
 
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import showMessage from "../../utils/showMessage";
@@ -89,8 +89,6 @@ export function* forgotPassword({ payload: { email } }) {
 }
 export function* resetPassword({ payload: { password, passwordConfirm, token, history } }) {
   try {
-
-
     yield put(showLoading());
     const { data } = yield call(() =>
       apiCall.patch(`/users/resetPassword/${token}`, { password, passwordConfirm, token })
@@ -103,6 +101,34 @@ export function* resetPassword({ payload: { password, passwordConfirm, token, hi
     history.push('/app')
   } catch (error) {
     yield put(resetPasswordFailure(error));
+    yield put(hideLoading());
+    if (error.response) {
+      yield showMessage("error", error.response.data.message, 2, {
+        top: 70,
+      });
+    } else {
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
+        top: 70,
+      });
+    }
+  }
+  finally {
+    yield put(hideLoading());
+  }
+}
+export function* updatePassword({ payload: { passwordCurrent, password, passwordConfirm, history } }) {
+  try {
+    yield put(showLoading());
+    const { data } = yield call(() =>
+      apiCall.patch(`/users/updateMyPassword`, { passwordCurrent, password, passwordConfirm })
+    );
+    const { user } = data.data;
+    yield localStorage.setItem("token", data.token);
+    yield put(updatePasswordSuccess(user));
+    // yield put(push('/app'));
+    history.push('/app')
+  } catch (error) {
+    yield put(updatePasswordFailure(error));
     yield put(hideLoading());
     if (error.response) {
       yield showMessage("error", error.response.data.message, 2, {
@@ -146,6 +172,9 @@ export function* onForgotPassword() {
 export function* onResetPassword() {
   yield takeLatest(UserActionTypes.RESET_PASSWORD_START, resetPassword);
 }
+export function* onUpdatePassword() {
+  yield takeLatest(UserActionTypes.UPDATE_PASSWORD_START, updatePassword);
+}
 export function* userSagas() {
-  yield all([call(onEmailSignInStart), call(onCheckUserSession), call(onSignUp), call(onForgotPassword), call(onResetPassword)]);
+  yield all([call(onEmailSignInStart), call(onCheckUserSession), call(onSignUp), call(onForgotPassword), call(onResetPassword), call(onUpdatePassword)]);
 }
