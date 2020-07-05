@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Header from "../../../components/Header/Header.component";
 import SearchProduct from "../../../components/SearchProduct/SearchProduct.component";
-import Profile from "../Profile/Profile.component";
+import Profile from "../../../components/Profile/Profile.jsx";
 import SearchResult from "../../../components/best-price/search-result/SearchResult.component";
 import ProductDetail from "../../../components/product-detail/ProductDetail.component";
 export default class Admin extends Component {
@@ -14,7 +14,6 @@ export default class Admin extends Component {
         <Header />
         <Switch>
           <Route path={`${path}/profile`} component={Profile} />
-          <Route path={`${path}/edit-profile`} component={SearchProduct} />
           <Route path={`${path}/search`} component={SearchResult} />
           <Route path={`${path}/products/:id`} component={ProductDetail} />
           <Route path={path} component={SearchProduct} />

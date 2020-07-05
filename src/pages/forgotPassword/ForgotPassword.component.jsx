@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-export default class ForgotPassword extends Component {
+import { Form, Input, Button } from "antd";
+import { forgotPasswordStart } from '../../redux/user/user.actions';
+import { connect } from 'react-redux';
+class ForgotPassword extends Component {
+    onFinish = (values) => {
+        const { email } = values;
+        this.props.forgotPasswordStart(email)
+    }
     render() {
         return (
             <div>
@@ -20,15 +27,37 @@ export default class ForgotPassword extends Component {
                                                         <div className="text-center">
                                                             <h1 className="h4 text-gray-900 mb-4">Quên mật khẩu</h1>
                                                         </div>
-                                                        <form className="user">
-                                                            <div className="form-group">
-                                                                <input type="email" className="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email..." />
-                                                            </div>
-                                                            <Link to="/reset-password" className="btn btn-primary btn-user btn-block">
-                                                                Đặt lại mật khẩu
-                        </Link>
-                                                        </form>
-                                                        <hr />
+                                                        <Form
+                                                            onFinish={this.onFinish}>
+                                                            <Form.Item
+                                                                labelCol={{ span: 24 }}
+                                                                label="Nhập email"
+                                                                name="email"
+                                                                placeholder="Nhập email"
+                                                                className="login-form"
+                                                                rules={[
+                                                                    {
+                                                                        required: true,
+                                                                        type: "email",
+                                                                        message: "Email không hợp lệ",
+                                                                    },
+                                                                ]}
+                                                            >
+                                                                <Input placeholder="Email" />
+                                                            </Form.Item>
+                                                            <Form.Item>
+                                                                <Button
+
+                                                                    type="primary"
+                                                                    htmlType="submit"
+                                                                    className="login-form-button "
+                                                                    block
+                                                                > Đặt lại mật khẩu</Button>
+                                                            </Form.Item>
+                                                        </Form>
+
+
+
                                                         <div className="text-center">
                                                             <h6 className="small" to>Đã có tài khoản?</h6>
                                                         </div>
@@ -50,3 +79,14 @@ export default class ForgotPassword extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    forgotPasswordStart: (email) =>
+        dispatch(forgotPasswordStart({ email })),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
