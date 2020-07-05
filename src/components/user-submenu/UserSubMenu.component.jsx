@@ -8,7 +8,7 @@ import { Link, withRouter } from "react-router-dom";
 import { signOut } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
-export class UserSubMenu extends Component {
+class UserSubMenu extends Component {
   colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
   color = this.colorList[Math.floor(Math.random() * this.colorList.length)];
 

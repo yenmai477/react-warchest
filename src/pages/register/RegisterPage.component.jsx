@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import { emailSignInStart } from "../../redux/user/user.actions";
+import { signUpStart } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
-
-
-
 import { Redirect } from "react-router-dom";
-export class RegisterPage extends Component {
+class RegisterPage extends Component {
   componentDidMount() {
     //  fetch api or get data
     // this.formRef.current.setFieldsValue({
@@ -18,9 +15,9 @@ export class RegisterPage extends Component {
     //   password: "123456",
     // });
   }
-  onFinish = (values) => {
-    const { email, password } = values;
-    this.props.emailSignInStart(email, password);
+  onFinish = ({ name, email, password, passwordConfirm }) => {
+
+    this.props.signUpStart(name, email, password, passwordConfirm)
   };
   render() {
     console.log(this.props.currentUser);
@@ -33,12 +30,14 @@ export class RegisterPage extends Component {
           <div className="row no-gutters">
             <div className="col-md-12 p-5 bg-white full-height vertical-center">
               <div className="container">
-                <Link className="login-back" to="/"><i className="fa fa-arrow-left" /></Link>
+                <Link className="login-back" to="/">
+                  <i className="fa fa-arrow-left" />
+                </Link>
                 <div className="card o-hidden border-0 shadow-lg my-5">
                   <div className="card-body p-0">
                     {/* Nested Row within Card Body */}
                     <div className="row">
-                      <div className="col-lg-6 d-none d-lg-block bg-register-image" ></div>
+                      <div className="col-lg-6 d-none d-lg-block bg-register-image"></div>
                       <div className="col-lg-6">
                         <div className="p-5">
                           <div className="text-center">
@@ -50,7 +49,22 @@ export class RegisterPage extends Component {
                             name="basic"
                             onFinish={this.onFinish}
                             onFinishFailed={this.onFinishFailed}
+                          ><Form.Item
+                            labelCol={{ span: 24 }}
+                            label="Nhập tên"
+                            name="name"
+                            placeholder="Nhập tên"
+                            className="login-form"
+                            rules={[
+                              {
+                                required: true,
+
+                                message: "Tên không hợp lệ",
+                              },
+                            ]}
                           >
+                              <Input placeholder="Nhập tên của bạn" />
+                            </Form.Item>
                             <Form.Item
                               labelCol={{ span: 24 }}
                               label="Nhập email"
@@ -65,7 +79,7 @@ export class RegisterPage extends Component {
                                 },
                               ]}
                             >
-                              <Input placeholder="Username" />
+                              <Input placeholder="Email" />
                             </Form.Item>
 
                             <Form.Item
@@ -83,7 +97,7 @@ export class RegisterPage extends Component {
                             </Form.Item>
                             <Form.Item
                               label="Nhập lại mật khẩu"
-                              name="password"
+                              name="passwordConfirm"
                               placeholder="Nhập lại mật khẩu"
                               rules={[
                                 {
@@ -99,10 +113,11 @@ export class RegisterPage extends Component {
                               <Button
                                 type="primary"
                                 htmlType="submit"
-                                className="login-form-button mt-4"
+                                className="login-form-button "
+                                block
                               >
                                 Đăng ký
-            </Button>
+                              </Button>
                             </Form.Item>
                           </Form>
                           {/* <form className="user">
@@ -134,10 +149,14 @@ export class RegisterPage extends Component {
                           </form> */}
                           <hr />
                           <div className="text-center">
-                            <h6 className="small" to>Đã có tài khoản?</h6>
+                            <h6 className="small" to>
+                              Đã có tài khoản?
+                            </h6>
                           </div>
                           <div className="text-center">
-                            <Link className="small" to="/login">Đăng nhập</Link>
+                            <Link className="small" to="/login">
+                              Đăng nhập
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -148,14 +167,19 @@ export class RegisterPage extends Component {
             </div>
           </div>
         </div>
-      </section>)
-
-
+      </section>
+    );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state)
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (name, email, password, passwordConfirm) =>
+    dispatch(signUpStart({ name, email, password, passwordConfirm })),
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

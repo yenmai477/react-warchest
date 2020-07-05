@@ -7,7 +7,7 @@ class LeftMenu extends Component {
     const { mode, location } = this.props;
     return (
       <Menu mode={mode || "horizontal"} selectedKeys={[location.pathname]}>
-        <Menu.Item key="/">
+        <Menu.Item key="/app">
           <Link to="/app">Trang chủ</Link>
         </Menu.Item>
         <Menu.Item key="/app/profile">
