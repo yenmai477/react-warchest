@@ -13,7 +13,7 @@ class UserSubMenu extends Component {
   color = this.colorList[Math.floor(Math.random() * this.colorList.length)];
 
   render() {
-    const { currentUser, mode, signOut, location } = this.props;
+    const { currentUser, mode, signOut, location, history } = this.props;
     return (
       <Menu
         mode={mode || "horizontal"}
@@ -38,7 +38,7 @@ class UserSubMenu extends Component {
           <Menu.Item key="/app/profile" icon={<UserOutlined />}>
             <Link to="/app/profile">Tài khoản</Link>
           </Menu.Item>
-          <Menu.Item icon={<LoginOutlined />} onClick={signOut}>
+          <Menu.Item icon={<LoginOutlined />} onClick={() => signOut(history)}>
             Đăng xuất
           </Menu.Item>
         </SubMenu>
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  signOut: () => dispatch(signOut()),
+  signOut: (history) => dispatch(signOut(history)),
 });
 
 export default withRouter(

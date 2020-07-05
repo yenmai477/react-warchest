@@ -19,9 +19,9 @@ export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
 
-export const signOut = () => {
+export const signOut = (history) => {
   localStorage.removeItem("token");
-
+  history.replace("/");
   return {
     type: UserActionTypes.SIGN_OUT,
   };
@@ -52,7 +52,7 @@ export const signUpFailure = (error) => ({
 });
 export const forgotPasswordStart = (email) => ({
   type: UserActionTypes.FORGOT_PASSWORD_START,
-  payload: email
+  payload: email,
 });
 export const forgotPasswordSuccess = (email) => ({
   type: UserActionTypes.FORGOT_PASSWORD_SUCCESS,
@@ -65,7 +65,7 @@ export const forgotPasswordFailure = (error) => ({
 });
 export const resetPasswordStart = (params) => ({
   type: UserActionTypes.RESET_PASSWORD_START,
-  payload: params
+  payload: params,
 });
 export const resetPasswordSuccess = (password) => ({
   type: UserActionTypes.RESET_PASSWORD_SUCCESS,
@@ -78,13 +78,13 @@ export const resetPasswordFailure = (error) => ({
 });
 export const updatePasswordStart = (params) => ({
   type: UserActionTypes.UPDATE_PASSWORD_START,
-  payload: params
-})
+  payload: params,
+});
 export const updatePasswordSuccess = (password) => ({
   type: UserActionTypes.RESET_PASSWORD_SUCCESS,
-  payload: password
-})
+  payload: password,
+});
 export const updatePasswordFailure = (error) => ({
   type: UserActionTypes.RESET_PASSWORD_FAILURE,
-  payload: error
-})
+  payload: error,
+});

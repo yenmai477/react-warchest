@@ -51,14 +51,14 @@ class ProductDetail extends Component {
       return (
         <span>
           Sản phẩm này là{" "}
-          <span class="badge badge-pill badge-danger">{label}</span>
+          <span className="badge badge-pill badge-danger">{label}</span>
         </span>
       );
     }
     return (
       <span>
         Sản phẩm này là{" "}
-        <span class="badge badge-pill badge-success">{label}</span>
+        <span className="badge badge-pill badge-success">{label}</span>
       </span>
     );
   };

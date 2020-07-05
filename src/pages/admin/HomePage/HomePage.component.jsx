@@ -9,12 +9,6 @@ import ProductDetail from "../../../components/product-detail/ProductDetail.comp
 import { selectCurrentUser } from "../../../redux/user/user.selector";
 import { connect } from "react-redux";
 class HomePage extends Component {
-  componentDidMount() {
-    if (!this.props.currentUser) {
-      this.props.history.replace("/login");
-    }
-  }
-
   render() {
     const { path } = this.props.match;
 
@@ -34,6 +28,7 @@ class HomePage extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
+  error: state.user.error,
 });
 
 const mapDispatchToProps = {};

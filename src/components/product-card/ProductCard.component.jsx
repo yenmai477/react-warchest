@@ -26,14 +26,14 @@ class ProductCard extends Component {
   renderPriceLabel = (label) => {
     if (label === "Sale ảo") {
       return (
-        <div class="label-price">
-          <span class="badge badge-error">{label}</span>
+        <div className="label-price">
+          <span className="badge badge-error">{label}</span>
         </div>
       );
     }
     return (
-      <div class="label-price">
-        <span class="badge badge-success">{label}</span>
+      <div className="label-price">
+        <span className="badge badge-success">{label}</span>
       </div>
     );
   };
