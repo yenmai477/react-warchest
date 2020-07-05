@@ -6,9 +6,18 @@ import SearchProduct from "../../../components/SearchProduct/SearchProduct.compo
 import Profile from "../../../components/Profile/Profile.jsx";
 import SearchResult from "../../../components/best-price/search-result/SearchResult.component";
 import ProductDetail from "../../../components/product-detail/ProductDetail.component";
-export default class Admin extends Component {
+import { selectCurrentUser } from "../../../redux/user/user.selector";
+import { connect } from "react-redux";
+class HomePage extends Component {
+  componentDidMount() {
+    if (!this.props.currentUser) {
+      this.props.history.replace("/login");
+    }
+  }
+
   render() {
     const { path } = this.props.match;
+
     return (
       <div>
         <Header />
@@ -22,3 +31,11 @@ export default class Admin extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state),
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
