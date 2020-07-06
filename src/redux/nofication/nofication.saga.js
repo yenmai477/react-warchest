@@ -10,6 +10,7 @@ import {
   getNoficationsSucess,
   getNoficationsFailure,
   deleteNoficationDetailSucess,
+  setNoficationLoading,
 } from "./nofication.action";
 
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -18,8 +19,6 @@ import showMessage from "../../utils/showMessage";
 export function* addNofication({ payload: params }) {
   try {
     yield put(showLoading());
-    console.log(params);
-
     const { data } = yield call(() => apiCall.post(`/nofications`, params));
     const nofication = data.data.data;
     yield put(addNoficationSucess(nofication));
@@ -57,7 +56,7 @@ export function* getNoficationDetail({ payload: productId }) {
 export function* getUserNofications() {
   try {
     yield put(showLoading());
-
+    yield put(setNoficationLoading());
     const { data } = yield call(() => apiCall.get(`/users/me/nofications`));
     let nofications = data.data.data;
     yield put(getNoficationsSucess(nofications));

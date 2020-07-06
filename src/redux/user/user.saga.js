@@ -9,7 +9,6 @@ import {
   signInFailure,
   signUpSuccess,
   signUpFailure,
-  forgotPasswordSuccess,
   forgotPasswordFailure,
   resetPasswordFailure,
   resetPasswordSuccess,

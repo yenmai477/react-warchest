@@ -77,3 +77,6 @@ export const deleteNoficationDetailFailure = (error) => ({
 export const clearNoficationDetail = () => ({
   type: NoficationActionTypes.CLEAR_NOFICATION_DETAIL,
 });
+export const setNoficationLoading = () => ({
+  type: NoficationActionTypes.SET_NOFICATION_LOADING,
+});

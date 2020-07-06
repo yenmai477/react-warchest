@@ -2,6 +2,8 @@ import NoficationActionTypes from "./nofication.types";
 
 const INITIAL_STATE = {
   nofications: [],
+  loading: true,
+  error: null,
   noficationDetail: null,
 };
 
@@ -18,6 +20,7 @@ const noficationReducer = (state = INITIAL_STATE, action) => {
     case NoficationActionTypes.GET_NOFICATIONS_SUCCESS:
       return {
         ...state,
+        loading: false,
         nofications: action.payload,
         error: null,
       };
@@ -33,6 +36,11 @@ const noficationReducer = (state = INITIAL_STATE, action) => {
         (item) => item.id !== action.payload
       );
       return { ...state, nofications };
+    case NoficationActionTypes.SET_NOFICATION_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }
