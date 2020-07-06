@@ -29,7 +29,10 @@ class LoginPage extends Component {
     console.log(this.props.currentUser);
 
     if (this.props.currentUser) {
-      return <Redirect to="/app" />;
+      const { from } = this.props.location.state || {
+        from: { pathname: "/app" },
+      };
+      return <Redirect to={from} />;
     }
     return (
       <section>

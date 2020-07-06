@@ -30,7 +30,13 @@ class App extends Component {
           <Route
             path="/app"
             render={(props) =>
-              !currentUser ? <Redirect to="/login" /> : <HomePage {...props} />
+              !currentUser ? (
+                <Redirect
+                  to={{ pathname: "/login", state: { from: props.location } }}
+                />
+              ) : (
+                <HomePage {...props} />
+              )
             }
           />
           <Route path="/login" component={LoginPage} />
