@@ -10,7 +10,7 @@ import noficationReducer from "./nofication/nofication.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({
