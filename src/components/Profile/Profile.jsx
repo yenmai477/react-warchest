@@ -8,7 +8,7 @@ export default class Profile extends Component {
   render() {
     const { path } = this.props.match;
     return (
-      <div>
+      <div className="content-wrapper">
         <section className="user-panel-body py-5">
           <div className="container">
             <div className="row">

@@ -98,6 +98,7 @@ class LeftFilter extends Component {
       selectSites,
       minPrice,
       maxPrice,
+      page,
       ...oldParams
     } = queryString.parse(search);
     const paramsString = queryString.stringify(oldParams) + "&" + params;

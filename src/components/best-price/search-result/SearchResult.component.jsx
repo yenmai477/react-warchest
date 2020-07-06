@@ -12,7 +12,6 @@ import {
 import ProductCard from "../../product-card/ProductCard.component";
 import { withRouter } from "react-router-dom";
 import { searchProductsStart } from "../../../redux/product/product.actions";
-import CardSkeleton from "../../card-skeleton/CardSkeleton.component";
 import RightSearchResult from "../../right-search-result/RightSearchResult.component";
 
 const { Option } = Select;
@@ -95,27 +94,6 @@ class SearchResult extends Component {
             </div>
             <div className="row">
               <LeftFilter />
-              {/* <div className="col-lg-9">
-                <div className="row">
-                  {this.props.products &&
-                    this.props.products.map((item) => {
-                      return (
-                        <div className="col-xl-4 col-sm-6 mb-4" key={item.id}>
-                          <ProductCard
-                            site={item.site}
-                            productName={item.name}
-                            image={item.image}
-                            price={item.price}
-                            url={item.url}
-                            updatedAt={item.updatedAt}
-                            priceLabel={item.priceLabel}
-                            id={item.id}
-                          />
-                        </div>
-                      );
-                    })}
-                </div>
-              </div> */}
 
               <RightSearchResult isLoading={this.props.loading} />
             </div>

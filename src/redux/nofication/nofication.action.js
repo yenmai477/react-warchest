@@ -44,3 +44,36 @@ export const updateNoficationDetailFailure = (error) => ({
   type: NoficationActionTypes.GET_NOFICATION_DETAIL_FAIL,
   payload: error,
 });
+
+export const getNoficationsStart = () => ({
+  type: NoficationActionTypes.GET_NOFICATIONS_START,
+});
+
+export const getNoficationsSucess = (nofication) => ({
+  type: NoficationActionTypes.GET_NOFICATIONS_SUCCESS,
+  payload: nofication,
+});
+
+export const getNoficationsFailure = (error) => ({
+  type: NoficationActionTypes.GET_NOFICATIONS_FAIL,
+  payload: error,
+});
+
+export const deleteNoficationDetailStart = (id) => ({
+  type: NoficationActionTypes.DELETE_NOFICATION_DETAIL_START,
+  payload: id,
+});
+
+export const deleteNoficationDetailSucess = (id) => ({
+  type: NoficationActionTypes.DELETE_NOFICATION_DETAIL_SUCCESS,
+  payload: id,
+});
+
+export const deleteNoficationDetailFailure = (error) => ({
+  type: NoficationActionTypes.DELETE_NOFICATION_DETAIL_FAIL,
+  payload: error,
+});
+
+export const clearNoficationDetail = () => ({
+  type: NoficationActionTypes.CLEAR_NOFICATION_DETAIL,
+});

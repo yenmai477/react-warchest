@@ -7,6 +7,9 @@ import {
   getNoficationDetailSucess,
   addNoficationSucess,
   updateNoficationDetailSucess,
+  getNoficationsSucess,
+  getNoficationsFailure,
+  deleteNoficationDetailSucess,
 } from "./nofication.action";
 
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -51,6 +54,21 @@ export function* getNoficationDetail({ payload: productId }) {
   }
 }
 
+export function* getUserNofications() {
+  try {
+    yield put(showLoading());
+
+    const { data } = yield call(() => apiCall.get(`/users/me/nofications`));
+    let nofications = data.data.data;
+    yield put(getNoficationsSucess(nofications));
+  } catch (error) {
+    yield put(getNoficationsFailure(error));
+    yield put(hideLoading());
+  } finally {
+    yield put(hideLoading());
+  }
+}
+
 export function* updateNoficationDetail({ payload: params }) {
   try {
     yield put(showLoading());
@@ -62,6 +80,20 @@ export function* updateNoficationDetail({ payload: params }) {
     const nofication = data.data.data;
     yield put(updateNoficationDetailSucess(nofication));
     showMessage("success", `${action} theo dõi giá thành công`, 3);
+  } catch (error) {
+    // yield put(searchProductsFailure(error));
+    yield put(hideLoading());
+  } finally {
+    yield put(hideLoading());
+  }
+}
+export function* deleteNoficationDetail({ payload: id }) {
+  try {
+    yield put(showLoading());
+
+    yield call(() => apiCall.delete(`/nofications/${id}`));
+    yield put(deleteNoficationDetailSucess(id));
+    showMessage("success", `Xóa theo dõi giá thành công`, 3);
   } catch (error) {
     // yield put(searchProductsFailure(error));
     yield put(hideLoading());
@@ -88,10 +120,25 @@ export function* onUpdateNoficationDetailStart() {
   );
 }
 
+export function* onGetUserNoficationsStart() {
+  yield takeLatest(
+    noficationActionTypes.GET_NOFICATIONS_START,
+    getUserNofications
+  );
+}
+export function* onDeleteNoficationDetailStart() {
+  yield takeLatest(
+    noficationActionTypes.DELETE_NOFICATION_DETAIL_START,
+    deleteNoficationDetail
+  );
+}
+
 export function* noficationSagas() {
   yield all([
     call(onAddNoficationStart),
     call(onGetNoficationDetailStart),
     call(onUpdateNoficationDetailStart),
+    call(onGetUserNoficationsStart),
+    call(onDeleteNoficationDetailStart),
   ]);
 }

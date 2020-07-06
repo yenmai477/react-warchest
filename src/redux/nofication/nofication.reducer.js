@@ -15,6 +15,24 @@ const noficationReducer = (state = INITIAL_STATE, action) => {
         noficationDetail: action.payload,
         error: null,
       };
+    case NoficationActionTypes.GET_NOFICATIONS_SUCCESS:
+      return {
+        ...state,
+        nofications: action.payload,
+        error: null,
+      };
+    case NoficationActionTypes.CLEAR_NOFICATION_DETAIL:
+      return {
+        ...state,
+        noficationDetail: null,
+      };
+    case NoficationActionTypes.DELETE_NOFICATION_DETAIL_SUCCESS:
+      console.log(action.payload);
+
+      const nofications = state.nofications.filter(
+        (item) => item.id !== action.payload
+      );
+      return { ...state, nofications };
     default:
       return state;
   }

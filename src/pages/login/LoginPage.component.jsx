@@ -32,7 +32,7 @@ class LoginPage extends Component {
       return <Redirect to="/app" />;
     }
     return (
-      <section className>
+      <section>
         <div className="container-fluid pl-0 pr-0">
           <div className="row no-gutters">
             <div className="col-md-12 p-5 bg-white full-height vertical-center">

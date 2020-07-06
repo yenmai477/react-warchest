@@ -6,3 +6,8 @@ export const selectNoficationDetail = createSelector(
   [selectNofication],
   (nofication) => nofication.noficationDetail
 );
+
+export const selectUserNofications = createSelector(
+  [selectNofication],
+  (nofication) => nofication.nofications
+);

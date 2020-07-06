@@ -18,6 +18,7 @@ import ShopeeImage from "../../assests/images/brands/shopee.jpg";
 import SendoImage from "../../assests/images/brands/sendo.png";
 
 import NoficationFormComponent from "../nofication-form/NoficationForm.component";
+import { clearNoficationDetail } from "../../redux/nofication/nofication.action";
 
 const getBrandImage = (site) => {
   const images = [];
@@ -44,6 +45,7 @@ class ProductDetail extends Component {
 
   componentWillUnmount() {
     this.props.clearProductDetails();
+    this.props.clearNoficationDetail();
   }
 
   renderPriceLabel = (label) => {
@@ -258,6 +260,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getProductDetails: (params) => dispatch(getProductDetailStart(params)),
   clearProductDetails: () => dispatch(clearProductDetails()),
+  clearNoficationDetail: () => dispatch(clearNoficationDetail()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
