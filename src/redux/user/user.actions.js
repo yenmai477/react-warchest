@@ -88,3 +88,16 @@ export const updatePasswordFailure = (error) => ({
   type: UserActionTypes.RESET_PASSWORD_FAILURE,
   payload: error,
 });
+
+export const updateUserDataStart = (data) => ({
+  type: UserActionTypes.UPDATE_USER_DATA_START,
+  payload: data,
+});
+export const updateUserDataSuccess = (user) => ({
+  type: UserActionTypes.RESET_PASSWORD_SUCCESS,
+  payload: user,
+});
+export const updateUserDataFailure = (error) => ({
+  type: UserActionTypes.RESET_PASSWORD_FAILURE,
+  payload: error,
+});

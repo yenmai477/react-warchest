@@ -14,6 +14,7 @@ import {
   resetPasswordSuccess,
   updatePasswordSuccess,
   updatePasswordFailure,
+  updateUserDataSuccess,
 } from "./user.actions";
 
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -179,6 +180,21 @@ export function* isUserAuthenticated() {
   }
 }
 
+export function* updateUserData({ payload: newUser }) {
+  try {
+    yield put(showLoading());
+    const { data } = yield call(() =>
+      apiCall.patch("/users/updateMe", newUser)
+    );
+    const { user } = data.data;
+    yield put(updateUserDataSuccess(user));
+    yield put(hideLoading());
+    yield showMessage("success", "Cập nhật thông tin thành công.", 2);
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+}
+
 export function* onEmailSignInStart() {
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
@@ -198,6 +214,10 @@ export function* onResetPassword() {
 export function* onUpdatePassword() {
   yield takeLatest(UserActionTypes.UPDATE_PASSWORD_START, updatePassword);
 }
+export function* onUpdateUserData() {
+  yield takeLatest(UserActionTypes.UPDATE_USER_DATA_START, updateUserData);
+}
+
 export function* userSagas() {
   yield all([
     call(onEmailSignInStart),
@@ -206,5 +226,6 @@ export function* userSagas() {
     call(onForgotPassword),
     call(onResetPassword),
     call(onUpdatePassword),
+    call(onUpdateUserData),
   ]);
 }

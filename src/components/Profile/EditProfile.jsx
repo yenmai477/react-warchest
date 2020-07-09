@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
+import { updateUserDataStart } from "../../redux/user/user.actions";
 
 class EditProfile extends Component {
   formRef = React.createRef();
@@ -13,6 +14,14 @@ class EditProfile extends Component {
       email: currentUser.email,
     });
   }
+
+  onFinish = ({ name, email }) => {
+    this.props.updateUserStart({
+      name,
+      email,
+    });
+  };
+
   render() {
     return (
       <div className="col-xl-9 col-md-8 col-sm-12">
@@ -96,6 +105,8 @@ const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  updateUserStart: (user) => dispatch(updateUserDataStart(user)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
