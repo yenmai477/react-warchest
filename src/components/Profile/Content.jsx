@@ -42,7 +42,7 @@ class Content extends Component {
       );
     }
     return (
-      <div className="col-xl-9 col-sm-8">
+      <div className="col-xl-9 col-md-8 col-sm-12">
         <div className="user-panel-body-right">
           <div id="mc" className="user-panel-tab-view mb-4">
             <div className="shadow-sm rounded overflow-hidden mb-3">
@@ -57,7 +57,7 @@ class Content extends Component {
               <div className="row mb-2 mt-3">
                 <div className="col-12">
                   <div className="dropdown float-right">
-                    <Select
+                    {/* <Select
                       value={this.state.filter}
                       style={{ width: 150 }}
                       onChange={this.handleChange}
@@ -65,7 +65,7 @@ class Content extends Component {
                       <Option value="all">Tất cả</Option>
                       <Option value="active">Đang theo dõi</Option>
                       <Option value="disable">Ngừng theo dõi</Option>
-                    </Select>
+                    </Select> */}
                   </div>
                 </div>
               </div>

@@ -11,7 +11,7 @@ class UserNoffication extends Component {
       <div className="row">
         {this.props.userNofications.map((item) => {
           return (
-            <div className="col-xl-4 col-md-12 mb-4" key={item.id}>
+            <div className="col-xl-4 col-md-6 col-sm-6 mb-4" key={item.id}>
               <NoficationCard nofication={item} />
             </div>
           );

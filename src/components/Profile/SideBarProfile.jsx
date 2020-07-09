@@ -9,7 +9,7 @@ class SideBarProfile extends Component {
   render() {
     const { currentUser, history, signOut } = this.props;
     return (
-      <div className="col-xl-3 col-sm-4">
+      <div className="col-xl-3 col-md-4 col-sm-12">
         <div className="user-panel-body-left">
           <div className="bg-white rounded p-4 mb-4 text-center shadow-sm">
             <Avatar

@@ -7,7 +7,6 @@ import {
   getNoficationDetailStart,
   updateNoficationDetailStart,
 } from "../../redux/nofication/nofication.action";
-import { selectNoficationDetail } from "../../redux/nofication/nofication.selector";
 
 class NoficationForm extends Component {
   constructor(props) {
