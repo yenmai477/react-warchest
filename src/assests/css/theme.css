@@ -1214,13 +1214,13 @@ button:focus {
 
 .login-back {
   color: #416ffb;
-  font-size: 30px;
+  font-size: 21px;
   left: 18px;
   position: absolute;
   top: 18px;
   background: #e8eefd;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

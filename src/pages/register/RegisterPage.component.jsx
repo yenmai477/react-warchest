@@ -16,8 +16,7 @@ class RegisterPage extends Component {
     // });
   }
   onFinish = ({ name, email, password, passwordConfirm }) => {
-
-    this.props.signUpStart(name, email, password, passwordConfirm)
+    this.props.signUpStart(name, email, password, passwordConfirm);
   };
   render() {
     console.log(this.props.currentUser);
@@ -25,13 +24,13 @@ class RegisterPage extends Component {
       return <Redirect to="/" />;
     }
     return (
-      <section className>
+      <section>
         <div className="container-fluid pl-0 pr-0">
           <div className="row no-gutters">
-            <div className="col-md-12 p-5 bg-white full-height vertical-center">
+            <div className="col-md-12 p-5 bg-image full-height vertical-center">
               <div className="container">
                 <Link className="login-back" to="/">
-                  <i className="fa fa-arrow-left" />
+                  <i class="icofont-arrow-left"></i>
                 </Link>
                 <div className="card o-hidden border-0 shadow-lg my-5">
                   <div className="card-body p-0">
@@ -49,20 +48,21 @@ class RegisterPage extends Component {
                             name="basic"
                             onFinish={this.onFinish}
                             onFinishFailed={this.onFinishFailed}
-                          ><Form.Item
-                            labelCol={{ span: 24 }}
-                            label="Nhập tên"
-                            name="name"
-                            placeholder="Nhập tên"
-                            className="login-form"
-                            rules={[
-                              {
-                                required: true,
-
-                                message: "Tên không hợp lệ",
-                              },
-                            ]}
                           >
+                            <Form.Item
+                              labelCol={{ span: 24 }}
+                              label="Nhập tên"
+                              name="name"
+                              placeholder="Nhập tên"
+                              className="login-form"
+                              rules={[
+                                {
+                                  required: true,
+
+                                  message: "Tên không hợp lệ",
+                                },
+                              ]}
+                            >
                               <Input placeholder="Nhập tên của bạn" />
                             </Form.Item>
                             <Form.Item
@@ -173,13 +173,12 @@ class RegisterPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentUser: selectCurrentUser(state)
+  currentUser: selectCurrentUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (name, email, password, passwordConfirm) =>
     dispatch(signUpStart({ name, email, password, passwordConfirm })),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

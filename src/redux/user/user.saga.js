@@ -35,9 +35,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
   } catch (error) {
     yield put(signInFailure(error));
     yield put(hideLoading());
-    yield showMessage("error", "Đăng nhập thất bại! Vui lòng thử lại.", 2, {
-      top: 70,
-    });
+    yield showMessage("error", "Đăng nhập thất bại! Vui lòng thử lại.", 2);
   } finally {
     yield put(hideLoading());
   }
@@ -58,13 +56,9 @@ export function* signUp({
     yield put(signUpFailure(error));
     yield put(hideLoading());
     if (error.response) {
-      yield showMessage("error", error.response.data.message, 2, {
-        top: 70,
-      });
+      yield showMessage("error", error.response.data.message, 5);
     } else {
-      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
-        top: 70,
-      });
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2);
     }
   } finally {
     yield put(hideLoading());
@@ -86,7 +80,7 @@ export function* forgotPassword({ payload: { email } }) {
     yield put(forgotPasswordFailure(error));
     yield put(hideLoading());
     if (error.response) {
-      yield showMessage("error", error.response.data.message, 2, {
+      yield showMessage("error", error.response.data.message, 3, {
         top: 70,
       });
     } else {
