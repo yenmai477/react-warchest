@@ -50,10 +50,7 @@ class SearchSection extends Component {
         return showMessage(
           "error",
           "Trang web bạn yêu cầu chưa được hỗ trợ!.",
-          2,
-          {
-            top: 70,
-          }
+          2
         );
       }
 
@@ -89,6 +86,7 @@ class SearchSection extends Component {
                     <div className="col-lg-10 col-md-10 col-sm-12 form-group">
                       <input
                         type="text"
+                        autoComplete="off"
                         placeholder="Tìm sản phẩm Sale Xịn trên Shopee, Tiki, Sendo, ..."
                         className="form-control border-0 form-control-lg shadow-sm"
                         name="search"

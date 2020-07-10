@@ -4,10 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getNoficationsStart } from "../../redux/nofication/nofication.action";
 import { selectUserNofications } from "../../redux/nofication/nofication.selector";
-import { Select, Button } from "antd";
+import { Button } from "antd";
 import UserNoffication from "../user-nofications/UserNoffication.component";
-
-const { Option } = Select;
 
 class Content extends Component {
   constructor(props) {

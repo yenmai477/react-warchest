@@ -3,3 +3,8 @@
   justify-content: center;
   align-items: center;
 }
+
+.bg-login-image {
+  background-image: url("./assests/images/signup.jpg");
+  object-fit: cover;
+}

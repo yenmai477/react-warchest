@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import moment from "moment";
-import "moment/locale/vi";
-
 import "./NoficationCard.style.css";
 
 import TikiImage from "../../assests/images/brands/tiki.png";

@@ -35,8 +35,8 @@ class UserSubMenu extends Component {
             </Space>
           }
         >
-          <Menu.Item key="/app/profile" icon={<UserOutlined />}>
-            <Link to="/app/profile">Tài khoản</Link>
+          <Menu.Item key="/app/profile/edit-profile" icon={<UserOutlined />}>
+            <Link to="/app/profile/edit-profile">Tài khoản</Link>
           </Menu.Item>
           <Menu.Item icon={<LoginOutlined />} onClick={() => signOut(history)}>
             Đăng xuất

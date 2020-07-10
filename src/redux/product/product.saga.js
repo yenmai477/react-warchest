@@ -1,7 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
 import apiCall from "../../utils/apiCall";
 
-import { push } from "react-router-redux";
 import productActionTypes from "./product.types";
 
 import {
@@ -11,7 +10,6 @@ import {
   getProductDetailFail,
 } from "./product.actions";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import showMessage from "../../utils/showMessage";
 import { getNoficationDetailStart } from "../nofication/nofication.action";
 
 export function* searchProducts({ payload: params }) {

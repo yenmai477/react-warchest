@@ -73,9 +73,7 @@ export function* signUp({
 export function* forgotPassword({ payload: { email } }) {
   try {
     yield put(showLoading());
-    const { data } = yield call(() =>
-      apiCall.post("/users/forgotPassword", { email })
-    );
+    yield call(() => apiCall.post("/users/forgotPassword", { email }));
     yield showMessage(
       "success",
       " Đã gửi mail, Vui lòng kiểm tra email của bạn",

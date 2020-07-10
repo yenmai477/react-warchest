@@ -4,14 +4,13 @@ import { Switch, Route } from "react-router-dom";
 import Header from "../../../components/Header/Header.component";
 import SearchProduct from "../../../components/SearchProduct/SearchProduct.component";
 import Profile from "../../../components/Profile/Profile.jsx";
-import SearchResult from "../../../components/best-price/search-result/SearchResult.component";
+import SearchResult from "../../../components/search-result/SearchResult.component";
 import ProductDetail from "../../../components/product-detail/ProductDetail.component";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
 import { connect } from "react-redux";
 class HomePage extends Component {
   render() {
     const { path } = this.props.match;
-
     return (
       <div>
         <Header />

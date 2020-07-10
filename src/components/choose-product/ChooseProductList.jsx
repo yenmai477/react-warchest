@@ -2,9 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import apiCall from "../../utils/apiCall";
 import ProductCard from "../product-card/ProductCard.component";
-import { Link } from "react-router-dom";
+
 import CardSkeleton from "../card-skeleton/CardSkeleton.component";
 
+const options = {
+  bestPrice: {
+    path: "&priceLabel[in]=[Sale tốt,Sale xịn]",
+    title: "Giá tốt nhất",
+  },
+  lastProduct: { path: "", title: "Sản phẩm mới nhất" },
+  lastUpdated: { path: "&sort=-updatedAt", title: "Mới cập nhật" },
+};
 class BestPriceProduct extends Component {
   constructor(props) {
     super(props);
@@ -14,26 +22,28 @@ class BestPriceProduct extends Component {
     };
   }
   async componentDidMount() {
+    const { type } = this.props;
     this.setState({ ...this.state, isLoading: true });
     const { data: res } = await apiCall.get(
-      "/products?limit=4&priceLabel[in]=[Sale tốt,Sale xịn]"
+      `/products?limit=4${options[type].path}`
     );
     const products = res.data.data;
     this.setState({ ...this.state, products, isLoading: false });
   }
 
   render() {
+    const { type } = this.props;
     return (
       <section className="section-padding homepage-view-offers">
         <div className="container">
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 className="h5 mb-0 text-gray-900">Giá tốt nhất</h1>
-            <Link
+            <h1 className="h5 mb-0 text-gray-900">{options[type].title}</h1>
+            {/* <Link
               to="/"
               className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
             >
               <i className="fas fa-eye fa-sm text-white-50"></i> Xem tất cả
-            </Link>
+            </Link> */}
           </div>
           <div className="row">
             {this.state.isLoading && (

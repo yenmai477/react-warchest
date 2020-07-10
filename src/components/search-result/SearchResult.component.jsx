@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
-import SearchSection from "../../search-section/SearchSection.component";
+import SearchSection from "../search-section/SearchSection.component";
 import { Select, Pagination } from "antd";
 
-import LeftFilter from "../../left-filter/LeftFilter.component";
+import LeftFilter from "../left-filter/LeftFilter.component";
 import {
   selectSearchProducts,
   selectTotalProducts,
-} from "../../../redux/product/product.selector";
-import ProductCard from "../../product-card/ProductCard.component";
+} from "../../redux/product/product.selector";
+
 import { withRouter } from "react-router-dom";
-import { searchProductsStart } from "../../../redux/product/product.actions";
-import RightSearchResult from "../../right-search-result/RightSearchResult.component";
+import { searchProductsStart } from "../../redux/product/product.actions";
+import RightSearchResult from "../right-search-result/RightSearchResult.component";
 
 const { Option } = Select;
 
