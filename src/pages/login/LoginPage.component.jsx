@@ -64,11 +64,9 @@ class LoginPage extends Component {
                                 onFinishFailed={this.onFinishFailed}
                               >
                                 <Form.Item
-                                  labelCol={{ span: 24 }}
                                   label="Email"
                                   name="email"
                                   placeholder="Email"
-                                  className="login-form"
                                   rules={[
                                     {
                                       required: true,

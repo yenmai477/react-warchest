@@ -39,7 +39,6 @@ class ForgotPassword extends Component {
                                     label="Nhập email"
                                     name="email"
                                     placeholder="Nhập email"
-                                    className="login-form"
                                     rules={[
                                       {
                                         required: true,

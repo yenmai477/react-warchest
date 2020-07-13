@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { resetPasswordStart } from "../../redux/user/user.actions";
-import { LeftCircleTwoTone, ArrowLeftOutlined } from "@ant-design/icons";
 
 class ResetPassword extends Component {
   componentDidMount() {

@@ -20,7 +20,7 @@
 }
 
 .card-title {
-  height: 2.5rem !important;
+  /* height: 2.5rem !important; */
   overflow: hidden;
   display: -webkit-box;
   text-overflow: ellipsis;

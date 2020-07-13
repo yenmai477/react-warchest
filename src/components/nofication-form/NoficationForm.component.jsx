@@ -27,8 +27,14 @@ class NoficationForm extends Component {
 
     if (!prevProps.nofication) {
       if (nofication) {
-        const { active, expectedPrice, email } = nofication;
-        this.setState({ ...this.state, active, expectedPrice, email: !!email });
+        const { active, expectedPrice, email, pushNofication } = nofication;
+        this.setState({
+          ...this.state,
+          active,
+          expectedPrice,
+          email,
+          pushNofication,
+        });
         return;
       }
     }
@@ -48,11 +54,16 @@ class NoficationForm extends Component {
   };
   handleOnSubmit = (evt) => {
     let { nofication } = this.props;
+    const noficationId = localStorage.getItem("noficationId");
     evt.preventDefault();
     const { product } = this.props;
 
     if (!nofication) {
-      this.props.addNoficationStart({ product: product.id, ...this.state });
+      this.props.addNoficationStart({
+        product: product.id,
+        ...this.state,
+        noficationId,
+      });
       return;
     }
     this.props.updateNoficationStart({
@@ -62,6 +73,7 @@ class NoficationForm extends Component {
   };
   render() {
     const { currentUser } = this.props;
+    console.log(this.state.pushNofication);
     return (
       <div className="row">
         <div id="to" className="col-12 bg-white shadow-sm rounded p-4 mb-4">
@@ -138,7 +150,7 @@ class NoficationForm extends Component {
                         type="checkbox"
                         name="pushNofication"
                         value={this.state.pushNofication}
-                        defaultChecked
+                        checked={this.state.pushNofication}
                         onChange={() => {
                           this.setState({
                             ...this.state,

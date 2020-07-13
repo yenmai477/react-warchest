@@ -104,7 +104,7 @@ class SearchResult extends Component {
             total={this.props.total}
             current={this.state.page}
             defaultCurrent={this.state.page}
-            pageSize={18}
+            pageSize={12}
             showSizeChanger={false}
             onChange={this.handleChangePage}
             hideOnSinglePage

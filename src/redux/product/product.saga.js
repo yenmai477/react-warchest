@@ -13,10 +13,13 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { getNoficationDetailStart } from "../nofication/nofication.action";
 
 export function* searchProducts({ payload: params }) {
+  console.log(params);
   try {
     yield put(showLoading());
 
-    const { data } = yield call(() => apiCall.get(`/products?${params}`));
+    const { data } = yield call(() =>
+      apiCall.get(`/products?${params}&limit=12`)
+    );
     const products = data;
     yield put(searchProductsSucess(products));
   } catch (error) {

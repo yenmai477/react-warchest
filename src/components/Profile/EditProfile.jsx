@@ -51,7 +51,6 @@ class EditProfile extends Component {
                         label="Họ tên"
                         name="name"
                         placeholder="Họ Tên"
-                        className="login-form"
                         rules={[
                           {
                             required: true,

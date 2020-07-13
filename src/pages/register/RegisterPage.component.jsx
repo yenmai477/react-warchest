@@ -54,7 +54,6 @@ class RegisterPage extends Component {
                               label="Nhập tên"
                               name="name"
                               placeholder="Nhập tên"
-                              className="login-form"
                               rules={[
                                 {
                                   required: true,
@@ -70,7 +69,6 @@ class RegisterPage extends Component {
                               label="Nhập email"
                               name="email"
                               placeholder="Nhập email"
-                              className="login-form"
                               rules={[
                                 {
                                   required: true,
