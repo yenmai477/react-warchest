@@ -1,21 +1,25 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import countReducer from "./count/count.reducer";
+
 import { loadingBarReducer } from "react-redux-loading-bar";
 import userReducer from "./user/user.reducer";
+import productReducer from "./product/product.reducer";
+import noficationReducer from "./nofication/nofication.reducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({
   // Reducers here
-  count: countReducer,
+
   user: userReducer,
+  product: productReducer,
   loadingBar: loadingBarReducer,
+  nofication: noficationReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

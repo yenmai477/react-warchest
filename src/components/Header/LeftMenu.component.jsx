@@ -7,15 +7,15 @@ class LeftMenu extends Component {
     const { mode, location } = this.props;
     return (
       <Menu mode={mode || "horizontal"} selectedKeys={[location.pathname]}>
-        <Menu.Item key="/">
-          <Link to="/">Trang chủ</Link>
+        <Menu.Item key="/app">
+          <Link to="/app">Trang chủ</Link>
         </Menu.Item>
-        <Menu.Item key="/products">
-          <Link to="/products">Sản phẩm</Link>
+        <Menu.Item key="/app/profile">
+          <Link to="/app/profile">Sản phẩm của tôi</Link>
         </Menu.Item>
-        <Menu.Item key="/about">
+        {/* <Menu.Item key="/about">
           <Link to="/about">Giới thiệu</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     );
   }

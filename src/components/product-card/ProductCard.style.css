@@ -1,0 +1,51 @@
+/* todo: 07/03/20 move this  */
+.content-wrapper {
+  background-color: #f0f2f5;
+  width: 100%;
+  overflow-x: hidden;
+  margin-top: 60px;
+}
+
+.btn-white {
+  color: #283e59;
+  background-color: #fff;
+  border-color: #e3ebf6;
+}
+
+.btn-white:hover {
+  background-color: #f9fbfd;
+  border-color: #d2ddec;
+  color: #283e59;
+  font-weight: 400 !important;
+}
+
+.card-title {
+  height: 3rem !important;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: inherit;
+}
+
+.label-price {
+  right: 1rem !important;
+  position: absolute;
+  top: 11px;
+  z-index: 9;
+}
+
+.label-price .badge {
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+}
+
+.label-price .badge.badge-success {
+  background-color: #34c38f;
+}
+
+.label-price .badge.badge-error {
+  background-color: #f46a6a;
+}

@@ -8,12 +8,12 @@ import { Link, withRouter } from "react-router-dom";
 import { signOut } from "../../redux/user/user.actions";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 
-export class UserSubMenu extends Component {
+class UserSubMenu extends Component {
   colorList = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae"];
   color = this.colorList[Math.floor(Math.random() * this.colorList.length)];
 
   render() {
-    const { currentUser, mode, signOut, location } = this.props;
+    const { currentUser, mode, signOut, location, history } = this.props;
     return (
       <Menu
         mode={mode || "horizontal"}
@@ -35,10 +35,10 @@ export class UserSubMenu extends Component {
             </Space>
           }
         >
-          <Menu.Item key="/users/profile" icon={<UserOutlined />}>
-            <Link to="/users/profile">Tài khoản</Link>
+          <Menu.Item key="/app/profile/edit-profile" icon={<UserOutlined />}>
+            <Link to="/app/profile/edit-profile">Tài khoản</Link>
           </Menu.Item>
-          <Menu.Item icon={<LoginOutlined />} onClick={signOut}>
+          <Menu.Item icon={<LoginOutlined />} onClick={() => signOut(history)}>
             Đăng xuất
           </Menu.Item>
         </SubMenu>
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  signOut: () => dispatch(signOut()),
+  signOut: (history) => dispatch(signOut(history)),
 });
 
 export default withRouter(
