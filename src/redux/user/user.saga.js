@@ -141,19 +141,14 @@ export function* updatePassword({
     const { user } = data.data;
     yield localStorage.setItem("token", data.token);
     yield put(updatePasswordSuccess(user));
-    // yield put(push('/app'));
-    history.push("/app");
+    showMessage("success", "Cập nhật mật khẩu thành công!");
   } catch (error) {
     yield put(updatePasswordFailure(error));
     yield put(hideLoading());
     if (error.response) {
-      yield showMessage("error", error.response.data.message, 2, {
-        top: 70,
-      });
+      yield showMessage("error", error.response.data.message, 3);
     } else {
-      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 2, {
-        top: 70,
-      });
+      yield showMessage("error", "Có gì đó không đúng! Vui lòng thử lại.", 3);
     }
   } finally {
     yield put(hideLoading());

@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { updatePasswordStart } from "../../redux/user/user.actions";
 import { Form, Input, Button } from "antd";
+import showMessage from "../../utils/showMessage";
 class UpdatePassword extends Component {
   onFinish = ({ passwordCurrent, password, passwordConfirm }) => {
     if (password !== passwordConfirm) {
-      alert("password does not matched");
+      showMessage("error", "Mật khẩu không trùng khớp", 3, { top: 15 });
     } else {
       const { history } = this.props;
       this.props.updatePasswordStart({
