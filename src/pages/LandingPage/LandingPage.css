@@ -20,7 +20,7 @@
   
   header.masthead {
     position: relative;
-    background-color: #343a40;
+    background-color: #406890;
     background: url("https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center center;
     background-size: cover;
     padding-top: 8rem;
@@ -52,7 +52,9 @@
       font-size: 3rem;
     }
   }
-  
+  .btn-primary{
+    background-color: #416ffb;
+  }
   .showcase .showcase-text {
     padding: 3rem;
   }
@@ -74,18 +76,23 @@
   }
   
   .features-icons .features-icons-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 20rem;
+    color: #416ffb;
   }
   
   .features-icons .features-icons-item .features-icons-icon {
+   
     height: 7rem;
   }
   
-  .features-icons .features-icons-item .features-icons-icon i {
+  .features-icons .features-icons-item .features-icons-icon .icon {
     font-size: 4.5rem;
   }
   
-  .features-icons .features-icons-item:hover .features-icons-icon i {
+  .features-icons .features-icons-item:hover .features-icons-icon .icon {
     font-size: 5rem;
   }
   
@@ -105,11 +112,12 @@
   
   .call-to-action {
     position: relative;
-    background-color: #343a40;
+    background-color: #452eee;
     background: url("https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center center;
     background-size: cover;
     padding-top: 7rem;
     padding-bottom: 7rem;
+    
   }
   
   .call-to-action .overlay {
